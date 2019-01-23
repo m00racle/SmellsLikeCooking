@@ -12,23 +12,30 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.zip.Inflater;
-
 /**This class is used to represent the fragment_list layout.
  * Since this is a Fragment this class must extends Fragment class*/
 public class ListFragment extends Fragment {
-    //override onCreateView method
+    //: create an interface to process when a recipe is selected:
+    public interface OnRecipeSelectedInterface {
+        //: create method to process when a recipe in the list is selected
+        //since this is an interface we just need to make abstract method
+        void onListRecipeSelected(int index);
+    }
 
+    //override onCreateView method
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //: create new OnRecipeSelectedInterface object:
+        OnRecipeSelectedInterface listener = (OnRecipeSelectedInterface) getActivity();
+
         View view = inflater.inflate(R.layout.fragment_list, container, false);
 
         //add the recycler view layout
         RecyclerView recyclerView = view.findViewById(R.id.listRecyclerView);
 
         //add the List Adapter object
-        ListAdapter listAdapter = new ListAdapter();
+        ListAdapter listAdapter = new ListAdapter(listener);
 
         //set the List Adapter to recycler view:
         recyclerView.setAdapter(listAdapter);
@@ -42,6 +49,14 @@ public class ListFragment extends Fragment {
     }
 
     public class ListAdapter extends RecyclerView.Adapter {
+
+        private final OnRecipeSelectedInterface mListener;
+
+        public ListAdapter(OnRecipeSelectedInterface listener) {
+            mListener = listener;
+        }
+
+
 
         @NonNull
         @Override
@@ -62,6 +77,7 @@ public class ListFragment extends Fragment {
         }
 
         private class ListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+            private int mIndex;
             private TextView mTextView;
             private ImageView mImageView;
 
@@ -69,14 +85,18 @@ public class ListFragment extends Fragment {
                 super(itemView);
                 mImageView = itemView.findViewById(R.id.itemImage);
                 mTextView = itemView.findViewById(R.id.itemText);
+
+                //: fix the item view set on click listener constructor:
+                itemView.setOnClickListener(this);
             }
 
             @Override
             public void onClick(View v) {
-                itemView.setOnClickListener(this);
+                mListener.onListRecipeSelected(mIndex);
             }
 
             public void bindView(int position){
+                mIndex = position;
                 mTextView.setText(Recipes.names[position]);
                 mImageView.setImageResource(Recipes.resourceIds[position]);
             }
