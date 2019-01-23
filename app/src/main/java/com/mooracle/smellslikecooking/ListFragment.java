@@ -68,7 +68,10 @@ public class ListFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
             //cast the list view holder into the holder and call the bind view method to pass the position:
-            ((ListViewHolder) holder).bindView(position);
+
+            ((ListViewHolder) holder).mImageView.setImageResource(Recipes.resourceIds[position]);
+            ((ListViewHolder) holder).mTextView.setText(Recipes.names[position]);
+            ((ListViewHolder) holder).setIndex(position);
         }
 
         @Override
@@ -78,8 +81,8 @@ public class ListFragment extends Fragment {
 
         private class ListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             private int mIndex;
-            private TextView mTextView;
-            private ImageView mImageView;
+            TextView mTextView;
+            ImageView mImageView;
 
             public ListViewHolder(@NonNull View itemView) {
                 super(itemView);
@@ -90,15 +93,15 @@ public class ListFragment extends Fragment {
                 itemView.setOnClickListener(this);
             }
 
+            //give onClick listeners for mImageView and mTextView which by default non clickable.
             @Override
             public void onClick(View v) {
                 mListener.onListRecipeSelected(mIndex);
             }
 
-            public void bindView(int position){
-                mIndex = position;
-                mTextView.setText(Recipes.names[position]);
-                mImageView.setImageResource(Recipes.resourceIds[position]);
+            // :set index that will be used in the onClick listener
+            public void setIndex(int index){
+                mIndex = index;
             }
         }
     }

@@ -29,6 +29,6 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnRe
     @Override
     public void onListRecipeSelected(int index) {
         //: make toast to give which recipe is selected (test)
-        Toast.makeText(this, Recipes.names[index], Toast.LENGTH_LONG).show();
+        Toast.makeText(this, Recipes.names[index], Toast.LENGTH_SHORT).show();
     }
 }
