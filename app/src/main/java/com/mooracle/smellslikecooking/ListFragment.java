@@ -6,13 +6,15 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.mooracle.smellslikecooking.logging.LoggingFragment;
 
 /**This class is used to represent the fragment_list layout.
  * Since this is a Fragment this class must extends Fragment class*/
-public class ListFragment extends Fragment {
+public class ListFragment extends LoggingFragment {
     //: create an interface to process when a recipe is selected:
     public interface OnRecipeSelectedInterface {
         //: create method to process when a recipe in the list is selected
@@ -24,6 +26,9 @@ public class ListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //: create log for fragment's onCreateView:
+        Log.d(LoggingFragment.TAG, "onCreateView");
+
         //: create new OnRecipeSelectedInterface object:
         OnRecipeSelectedInterface listener = (OnRecipeSelectedInterface) getActivity();
 
