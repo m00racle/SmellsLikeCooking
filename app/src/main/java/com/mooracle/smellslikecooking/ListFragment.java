@@ -34,7 +34,7 @@ public class ListFragment extends Fragment {
 
         //add the List Adapter object
         //ListAdapter listAdapter = new ListAdapter(listener);
-        NewListAdapter listAdapter = new NewListAdapter(listener);
+        ListAdapter listAdapter = new ListAdapter(listener);
 
         //set the List Adapter to recycler view:
         recyclerView.setAdapter(listAdapter);
@@ -42,7 +42,7 @@ public class ListFragment extends Fragment {
         //set the layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
-        //attach the layput manager to the recycler view
+        //attach the layout manager to the recycler view
         recyclerView.setLayoutManager(layoutManager);
         return view;
     }

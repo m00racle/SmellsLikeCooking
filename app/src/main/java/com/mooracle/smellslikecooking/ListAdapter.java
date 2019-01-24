@@ -8,24 +8,24 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class NewListAdapter extends RecyclerView.Adapter<NewListAdapter.NewListViewHolder> {
+public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder> {
     //instantiate the OnSelectedRecipeInterface to be used as listener:
     private final ListFragment.OnRecipeSelectedInterface mListener;
 
-    public NewListAdapter(ListFragment.OnRecipeSelectedInterface listener) {
+    public ListAdapter(ListFragment.OnRecipeSelectedInterface listener) {
         mListener = listener;
     }
 
     @NonNull
     @Override
-    public NewListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //return view form the list_item layout inflated into the list adapter
-        return new NewListViewHolder(LayoutInflater.from(parent.getContext())
+        return new ListViewHolder(LayoutInflater.from(parent.getContext())
         .inflate(R.layout.list_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NewListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
         // bind the views to POJO object:
         holder.mImageView.setImageResource(Recipes.resourceIds[position]);
         holder.mTextView.setText(Recipes.names[position]);
@@ -39,7 +39,7 @@ public class NewListAdapter extends RecyclerView.Adapter<NewListAdapter.NewListV
         return Recipes.names.length;
     }
 
-    public class NewListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         //field for all of our views:
         TextView mTextView;
         ImageView mImageView;
@@ -47,7 +47,7 @@ public class NewListAdapter extends RecyclerView.Adapter<NewListAdapter.NewListV
         //field for our index in onCLick listener
         private int mIndex;
 
-        public NewListViewHolder(@NonNull View itemView) {
+        public ListViewHolder(@NonNull View itemView) {
             super(itemView);
             mTextView = itemView.findViewById(R.id.itemText);
             mImageView = itemView.findViewById(R.id.itemImage);
