@@ -1,4 +1,6 @@
-package com.mooracle.smellslikecooking;
+package com.mooracle.smellslikecooking.model;
+
+import com.mooracle.smellslikecooking.R;
 
 public class Recipes {
     public static String[] names = new String[]{"Crepes","Pancakes","Scones","French Toast", "Muffins", "Waffles",

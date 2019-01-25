@@ -5,7 +5,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
-import com.mooracle.smellslikecooking.logging.LoggingActivity;
+import com.mooracle.smellslikecooking.fragment.ListFragment;
+import com.mooracle.smellslikecooking.model.Recipes;
 
 public class MainActivity extends AppCompatActivity implements ListFragment.OnRecipeSelectedInterface {
 

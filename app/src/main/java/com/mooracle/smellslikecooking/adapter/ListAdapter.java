@@ -1,4 +1,4 @@
-package com.mooracle.smellslikecooking;
+package com.mooracle.smellslikecooking.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.mooracle.smellslikecooking.fragment.ListFragment;
+import com.mooracle.smellslikecooking.R;
+import com.mooracle.smellslikecooking.model.Recipes;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder> {
     //instantiate the OnSelectedRecipeInterface to be used as listener:

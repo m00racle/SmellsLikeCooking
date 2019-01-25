@@ -1,4 +1,4 @@
-package com.mooracle.smellslikecooking;
+package com.mooracle.smellslikecooking.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.mooracle.smellslikecooking.R;
+import com.mooracle.smellslikecooking.adapter.ListAdapter;
 import com.mooracle.smellslikecooking.logging.LoggingFragment;
 
 /**This class is used to represent the fragment_list layout.
