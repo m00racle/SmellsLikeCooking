@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 import com.mooracle.smellslikecooking.fragment.ListFragment;
+import com.mooracle.smellslikecooking.fragment.ViewPagerFragment;
 import com.mooracle.smellslikecooking.model.Recipes;
 
 public class MainActivity extends AppCompatActivity implements ListFragment.OnRecipeSelectedInterface {
@@ -38,5 +39,13 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnRe
     public void onListRecipeSelected(int index) {
         //: make toast to give which recipe is selected (test)
         Toast.makeText(this, Recipes.names[index], Toast.LENGTH_SHORT).show();
+
+        //: replace the current ListFragment with ViewPagerFragment
+        ViewPagerFragment fragment = new ViewPagerFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.placeHolder, fragment);
+        transaction.commit();
     }
 }
