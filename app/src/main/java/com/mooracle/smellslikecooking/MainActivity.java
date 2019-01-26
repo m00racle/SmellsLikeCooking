@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnRe
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.placeHolder, fragment);
+
+        //: add transaction to backstack
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 }
