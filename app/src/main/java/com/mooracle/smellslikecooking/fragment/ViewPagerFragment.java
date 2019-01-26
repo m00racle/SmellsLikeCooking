@@ -3,6 +3,7 @@ package com.mooracle.smellslikecooking.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -44,6 +45,16 @@ public class ViewPagerFragment extends Fragment {
             public int getCount() {
                 return 2;
             }
+
+            @Nullable
+            @Override
+            public CharSequence getPageTitle(int position) {
+                if (position == 0){
+                    return "Ingredients";
+                } else {
+                    return "Directions";
+                }
+            }
         });
 
         //: get the int index value from the bundle
@@ -53,6 +64,11 @@ public class ViewPagerFragment extends Fragment {
         //Toast.makeText(getActivity(), Recipes.names[index], Toast.LENGTH_SHORT).show();
         //: this toast will be changed by changing the action bar title into the recipe name
         getActivity().setTitle(Recipes.names[index]);
+
+        //: set the tabLayout object and use setting from viewPager
+        TabLayout tabLayout = view.findViewById(R.id.tabLayout);
+        tabLayout.setupWithViewPager(viewPager);
+
         return view;
     }
 
