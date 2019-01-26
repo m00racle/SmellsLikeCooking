@@ -2,4 +2,6 @@
     <string name="app_name">Smells Like Cooking</string>
     <string name="image_of_the_recipe_desc">image of the recipe</string>
     <string name="text_recipe">TextView</string>
+    <string name="ingredients_default_text">Ingredients</string>
+    <string name="directions_default_text">Directions</string>
 </resources>

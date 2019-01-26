@@ -17,6 +17,9 @@ import com.mooracle.smellslikecooking.logging.LoggingFragment;
 /**This class is used to represent the fragment_list layout.
  * Since this is a Fragment this class must extends Fragment class*/
 public class ListFragment extends Fragment {
+    //: set tag for this ListFragment
+    public static final String LIST_FRAGMENT ="List_Fragment";
+
     //: create an interface to process when a recipe is selected:
     public interface OnRecipeSelectedInterface {
         //: create method to process when a recipe in the list is selected
