@@ -50,7 +50,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder
         //field for our index in onCLick listener
         private int mIndex;
 
-        public ListViewHolder(@NonNull View itemView) {
+        ListViewHolder(@NonNull View itemView) {
             super(itemView);
             mTextView = itemView.findViewById(R.id.itemText);
             mImageView = itemView.findViewById(R.id.itemImage);
@@ -65,7 +65,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder
             mListener.onListRecipeSelected(mIndex);
         }
 
-        public void setIndex(int position) {
+        void setIndex(int position) {
             mIndex = position;
         }
     }

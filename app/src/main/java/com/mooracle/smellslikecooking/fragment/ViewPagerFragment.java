@@ -13,13 +13,14 @@ import android.view.ViewGroup;
 import com.mooracle.smellslikecooking.R;
 import com.mooracle.smellslikecooking.model.Recipes;
 
+import java.util.Objects;
+
 public class ViewPagerFragment extends Fragment {
     //: set tag for ViewPagerFragment:
     public static final String VIEWPAGER_FRAGMENT = "Viewpager_Fragment";
 
     //: make String constant name to store the index name:
     public static final String KEY_RECIPE_INDEX = "recipe_index";
-    private int index;
 
     @Nullable
     @Override
@@ -38,7 +39,8 @@ public class ViewPagerFragment extends Fragment {
         viewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                if (position == 0){return ingredientsFragment;} else {return directionsFragment;}
+                //if (position == 0){return ingredientsFragment;} else {return directionsFragment;}
+                return (position == 0)? ingredientsFragment: directionsFragment;
             }
 
             @Override
@@ -49,21 +51,18 @@ public class ViewPagerFragment extends Fragment {
             @Nullable
             @Override
             public CharSequence getPageTitle(int position) {
-                if (position == 0){
-                    return "Ingredients";
-                } else {
-                    return "Directions";
-                }
+                //if (position == 0){return "Ingredients";} else {return "Directions"; }
+                return (position == 0)? "Ingredients": "Directions";
             }
         });
 
         //: get the int index value from the bundle
-        index = getArguments().getInt(KEY_RECIPE_INDEX);
+        int index = getArguments() != null ? getArguments().getInt(KEY_RECIPE_INDEX) : 0;
 
         //: add Toast from main activity to this fragment:
         //Toast.makeText(getActivity(), Recipes.names[index], Toast.LENGTH_SHORT).show();
         //: this toast will be changed by changing the action bar title into the recipe name
-        getActivity().setTitle(Recipes.names[index]);
+        Objects.requireNonNull(getActivity()).setTitle(Recipes.names[index]);
 
         //: set the tabLayout object and use setting from viewPager
         TabLayout tabLayout = view.findViewById(R.id.tabLayout);
@@ -76,6 +75,6 @@ public class ViewPagerFragment extends Fragment {
     public void onStop() {
         //: when this fragment ends we need to return the action bar title back to app default (app name)
         super.onStop();
-        getActivity().setTitle(getResources().getString(R.string.app_name));
+        Objects.requireNonNull(getActivity()).setTitle(getResources().getString(R.string.app_name));
     }
 }
