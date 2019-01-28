@@ -30,7 +30,7 @@ public class ViewPagerFragment extends Fragment {
 
         //: set the IngredientFragment and DirectionFragment to be used in the viewPager Adapter:
         final IngredientsFragment ingredientsFragment = new IngredientsFragment();
-        final DirectionsFragment directionsFragment = new DirectionsFragment();
+        final CheckboxesFragment directionsFragment = new DirectionsFragment();
 
         //: add ViewPager object into this fragment:
         ViewPager viewPager = view.findViewById(R.id.viewPager);
@@ -39,7 +39,7 @@ public class ViewPagerFragment extends Fragment {
         viewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                //if (position == 0){return ingredientsFragment;} else {return directionsFragment;}
+                //if (position == 0){return ingredientsFragment;} else {return DirectionsFragment;}
                 return (position == 0)? ingredientsFragment: directionsFragment;
             }
 
@@ -64,7 +64,7 @@ public class ViewPagerFragment extends Fragment {
         bundle.putInt(KEY_RECIPE_INDEX, index);
         ingredientsFragment.setArguments(bundle);
 
-        //: put the index argument inside the bundle to directionsFragment:
+        //: put the index argument inside the bundle to DirectionsFragment:
         directionsFragment.setArguments(bundle);
 
         //: add Toast from main activity to this fragment:
