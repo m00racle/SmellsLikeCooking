@@ -64,6 +64,9 @@ public class ViewPagerFragment extends Fragment {
         bundle.putInt(KEY_RECIPE_INDEX, index);
         ingredientsFragment.setArguments(bundle);
 
+        //: put the index argument inside the bundle to directionsFragment:
+        directionsFragment.setArguments(bundle);
+
         //: add Toast from main activity to this fragment:
         //Toast.makeText(getActivity(), Recipes.names[index], Toast.LENGTH_SHORT).show();
         //: this toast will be changed by changing the action bar title into the recipe name
