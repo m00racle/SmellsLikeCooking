@@ -38,7 +38,7 @@ public class DualPaneFragment extends Fragment {
         IngredientsFragment savedIngredientsFragment =
                 (IngredientsFragment) fragmentManager.findFragmentByTag(INGREDIENT_FRAGMENT);
         if (savedIngredientsFragment == null){
-            //set the ingredient fragment and direction fragment at once:
+            //set the ingredient fragment :
             IngredientsFragment ingredientsFragment = new IngredientsFragment();
             DirectionsFragment directionsFragment = new DirectionsFragment();
 
@@ -47,11 +47,29 @@ public class DualPaneFragment extends Fragment {
             bundle.putInt(KEY_RECIPE_INDEX, index);
 
             ingredientsFragment.setArguments(bundle);
-            directionsFragment.setArguments(bundle);
 
             //begin transaction:
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.add(R.id.leftPlaceholder, ingredientsFragment, INGREDIENT_FRAGMENT);
+
+            transaction.commit();
+        }
+
+        //: check if the direction fragment is already in saved instance:
+        DirectionsFragment savedDirectionFragment =
+                (DirectionsFragment) fragmentManager.findFragmentByTag(DIRECTIONS_FRAGMENT);
+        if (savedDirectionFragment == null){
+            //set DirectionFragment
+            DirectionsFragment directionsFragment = new DirectionsFragment();
+
+            //set the index for ingredients and directions fragments:
+            Bundle bundle = new Bundle();
+            bundle.putInt(KEY_RECIPE_INDEX, index);
+
+            directionsFragment.setArguments(bundle);
+
+            //begin transaction:
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
 
             transaction.add(R.id.rightPlaceholder, directionsFragment, DIRECTIONS_FRAGMENT);
             transaction.commit();
