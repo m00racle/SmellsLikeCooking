@@ -5,10 +5,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
+import com.mooracle.smellslikecooking.fragment.GridFragment;
 import com.mooracle.smellslikecooking.fragment.ListFragment;
 import com.mooracle.smellslikecooking.fragment.ViewPagerFragment;
 
-public class MainActivity extends AppCompatActivity implements ListFragment.OnRecipeSelectedInterface {
+public class MainActivity extends AppCompatActivity implements ListFragment.OnRecipeSelectedInterface,
+        GridFragment.OnRecipeSelectedInterface {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,8 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnRe
                     .findFragmentByTag(ListFragment.LIST_FRAGMENT);
 
             //: if the savedFragment is null then only add new fragment:
-            if (savedFragment == null){// crete the lis fragment object:
+            if (savedFragment == null){
+                // crete the list fragment object:
                 ListFragment fragment = new ListFragment();
 
                 // create fragment manager to add our fragment into place holder:
@@ -43,7 +46,22 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnRe
             }
         } else {
             //todo: create the gridFragment:
+            GridFragment savedFragment = (GridFragment) getSupportFragmentManager()
+                    .findFragmentByTag(GridFragment.GRID_FRAGMENT);
 
+            //check if the savedFragment is null or not:
+            if (savedFragment == null){
+                //create the Grid Fragment (new):
+                GridFragment fragment = new GridFragment();
+
+                FragmentManager fragmentManager = getSupportFragmentManager();
+
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                // use the transaction to add Grid fragment and give it a tag
+                fragmentTransaction.add(R.id.placeHolder, fragment, GridFragment.GRID_FRAGMENT);
+                fragmentTransaction.commit();
+            }
         }
 
 
@@ -75,5 +93,10 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnRe
         //: add transaction to backstack
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @Override
+    public void onGridRecipeSelected(int index) {
+
     }
 }
