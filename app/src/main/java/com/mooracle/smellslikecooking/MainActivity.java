@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 import com.mooracle.smellslikecooking.fragment.ListFragment;
 import com.mooracle.smellslikecooking.fragment.ViewPagerFragment;
 
@@ -14,26 +15,38 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnRe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //: create a new field of listFragment as basis for if checking: (Remember to cast it to ListFragment)
-        //: use Tag from ListFragment to find the Fragment.
-        ListFragment savedFragment = (ListFragment) getSupportFragmentManager()
-                .findFragmentByTag(ListFragment.LIST_FRAGMENT);
+        //: get the boolean value from the is_tablet variable:
+        boolean isTablet = getResources().getBoolean(R.bool.is_tablet);
+        //Toast.makeText(this, isTablet + "", Toast.LENGTH_SHORT).show();
 
-        //: if the savedFragment is null then only add new fragment:
-        if (savedFragment == null){// crete the lis fragment object:
-            ListFragment fragment = new ListFragment();
+        //todo: if the device is not a tablet then use the ListFragment, else use GridFragment:
+        if (!isTablet){
+            //: create a new field of listFragment as basis for if checking: (Remember to cast it to ListFragment)
+            //: use Tag from ListFragment to find the Fragment.
+            ListFragment savedFragment = (ListFragment) getSupportFragmentManager()
+                    .findFragmentByTag(ListFragment.LIST_FRAGMENT);
 
-            // create fragment manager to add our fragment into place holder:
-            //this is the latest app support fragment manager since the old getFragmentManager method has beed deprecated
-            FragmentManager fragmentManager = getSupportFragmentManager();
+            //: if the savedFragment is null then only add new fragment:
+            if (savedFragment == null){// crete the lis fragment object:
+                ListFragment fragment = new ListFragment();
 
-            // create the fragment transaction variable:
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                // create fragment manager to add our fragment into place holder:
+                //this is the latest app support fragment manager since the old getFragmentManager method has beed deprecated
+                FragmentManager fragmentManager = getSupportFragmentManager();
 
-            //: use tag to find ListFragment:
-            fragmentTransaction.add(R.id.placeHolder, fragment, ListFragment.LIST_FRAGMENT);
-            fragmentTransaction.commit();
+                // create the fragment transaction variable:
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                //: use tag to find ListFragment:
+                fragmentTransaction.add(R.id.placeHolder, fragment, ListFragment.LIST_FRAGMENT);
+                fragmentTransaction.commit();
+            }
+        } else {
+            //todo: create the gridFragment:
+
         }
+
+
 
     }
 
