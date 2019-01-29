@@ -40,7 +40,6 @@ public class DualPaneFragment extends Fragment {
         if (savedIngredientsFragment == null){
             //set the ingredient fragment :
             IngredientsFragment ingredientsFragment = new IngredientsFragment();
-            DirectionsFragment directionsFragment = new DirectionsFragment();
 
             //set the index for ingredients and directions fragments:
             Bundle bundle = new Bundle();
