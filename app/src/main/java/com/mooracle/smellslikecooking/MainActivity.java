@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
+import com.mooracle.smellslikecooking.fragment.DualPaneFragment;
 import com.mooracle.smellslikecooking.fragment.GridFragment;
 import com.mooracle.smellslikecooking.fragment.ListFragment;
 import com.mooracle.smellslikecooking.fragment.ViewPagerFragment;
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnRe
         boolean isTablet = getResources().getBoolean(R.bool.is_tablet);
         //Toast.makeText(this, isTablet + "", Toast.LENGTH_SHORT).show();
 
-        //todo: if the device is not a tablet then use the ListFragment, else use GridFragment:
+        // if the device is not a tablet then use the ListFragment, else use GridFragment:
         if (!isTablet){
             //: create a new field of listFragment as basis for if checking: (Remember to cast it to ListFragment)
             //: use Tag from ListFragment to find the Fragment.
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnRe
                 fragmentTransaction.commit();
             }
         } else {
-            //todo: create the gridFragment:
+            // create the gridFragment:
             GridFragment savedFragment = (GridFragment) getSupportFragmentManager()
                     .findFragmentByTag(GridFragment.GRID_FRAGMENT);
 
@@ -97,6 +97,23 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnRe
 
     @Override
     public void onGridRecipeSelected(int index) {
+        //: initialize the DualPaneFragment:
+        DualPaneFragment fragment = new DualPaneFragment();
 
+        //give the index into bundle and sent it to DualPanelFragment:
+        Bundle bundle = new Bundle();
+
+        bundle.putInt(DualPaneFragment.KEY_RECIPE_INDEX, index);
+
+        fragment.setArguments(bundle);
+
+        //: begin the transaction of the fragments:
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.placeHolder, fragment, DualPaneFragment.DUALPANE_FRAGMENT);
+
+        //add to backstack:
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

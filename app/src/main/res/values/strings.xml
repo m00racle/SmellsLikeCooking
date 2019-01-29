@@ -6,4 +6,6 @@
     <string name="directions_default_text">Directions</string>
     <string name="grid_text_default">Grid Text!</string>
     <string name="grid_image_desc">The image sample of Grid List Layout</string>
+    <string name="ingredients_text_label">Ingredients</string>
+    <string name="directions_text_label">Directions</string>
 </resources>
