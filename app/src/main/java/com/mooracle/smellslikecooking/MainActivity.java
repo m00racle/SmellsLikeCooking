@@ -88,7 +88,8 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnRe
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         //set the animation transition for the ViewPager fragment
-        transaction.setCustomAnimations(R.animator.slide_down_enter,R.animator.slide_down_exit);
+        transaction.setCustomAnimations(R.animator.slide_down_enter,R.animator.slide_down_exit,
+                R.animator.slide_down_enter, R.animator.slide_down_exit);
 
         //: use tag to find the viewPagerFragment instead placeholder id
         transaction.replace(R.id.placeHolder, fragment, ViewPagerFragment.VIEWPAGER_FRAGMENT);

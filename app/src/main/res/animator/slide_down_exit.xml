@@ -2,10 +2,10 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android"
     android:ordering="together">
     <objectAnimator
-        android:propertyName="translationY"
+        android:propertyName="scaleX"
+        android:valueFrom="1"
+        android:valueTo="0"
         android:valueType="floatType"
-        android:valueFrom="0dp"
-        android:valueTo="100dp"
         android:interpolator="@android:interpolator/decelerate_quint"
         android:duration="1000"/>
 
