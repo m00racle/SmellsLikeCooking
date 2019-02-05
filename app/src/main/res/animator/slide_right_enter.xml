@@ -10,7 +10,7 @@
         android:duration="150"/>
 
     <objectAnimator
-        android:propertyName="translationY"
+        android:propertyName="translationX"
         android:valueType="floatType"
         android:valueFrom="-100dp"
         android:valueTo="0dp"

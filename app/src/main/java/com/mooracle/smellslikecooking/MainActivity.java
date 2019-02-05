@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnRe
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
+        //set the animation transition for the ViewPager fragment
         transaction.setCustomAnimations(R.animator.slide_down_enter,R.animator.slide_down_exit);
 
         //: use tag to find the viewPagerFragment instead placeholder id
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnRe
         //: begin the transaction of the fragments:
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
+
         transaction.replace(R.id.placeHolder, fragment, DualPaneFragment.DUALPANE_FRAGMENT);
 
         //add to backstack:
