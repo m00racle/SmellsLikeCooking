@@ -50,8 +50,6 @@ public class DualPaneFragment extends Fragment {
             //begin transaction:
             FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-            transaction.setCustomAnimations(R.animator.slide_right_enter, R.animator.slide_down_exit);
-
             transaction.add(R.id.leftPlaceholder, ingredientsFragment, INGREDIENT_FRAGMENT);
 
             transaction.commit();
@@ -72,8 +70,6 @@ public class DualPaneFragment extends Fragment {
 
             //begin transaction:
             FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-            transaction.setCustomAnimations(R.animator.slide_left_enter, R.animator.slide_down_exit);
 
             transaction.add(R.id.rightPlaceholder, directionsFragment, DIRECTIONS_FRAGMENT);
             transaction.commit();

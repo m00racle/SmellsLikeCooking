@@ -115,6 +115,9 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnRe
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
+        transaction.setCustomAnimations(R.animator.slide_down_enter,R.animator.slide_down_exit,
+                R.animator.slide_down_enter, R.animator.slide_down_exit);
+
         transaction.replace(R.id.placeHolder, fragment, DualPaneFragment.DUALPANE_FRAGMENT);
 
         //add to backstack:
